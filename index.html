@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點餐系統</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffcccb;">
+        
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" onclick="showHome()">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('台式蛋餅')">台式蛋餅</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('漢堡')">漢堡</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('小點')">小點</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('鬆餅')">鬆餅</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('飲料')">飲料</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('特調飲品')">特調飲品</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showOrder()">Order</a></li>
+                        
+                    <!--li class="nav-item">
+                        <a class="nav-link" href="#">Contact us</a-->
+                    </li>
+                    <input type="text" id="searchBox" placeholder="搜尋食物" oninput="searchMenu()" >
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <h1 class="text-center">WELCOME TO 吃好</h1>
+        
+        <!-- Order Form -->
+            <form id="orderForm">
+                <div class="mb-3">
+                    <label for="customerName" class="form-label">Customer Name:</label>
+                    <input type="text" class="form-control" id="customerName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="customerPhone" class="form-label">Phone Number:</label>
+                    <input type="text" class="form-control" id="customerPhone" required>
+                </div>
+            </form>
+
+        <div id="homeScreen" class="mt-4" style="display: block;">
+            <h3>菜單</h3>
+            <ul id="homeMenu" class="list-group">
+                <!-- Menu items will be listed here -->
+                <li class="list-group-item" data-name="原味蛋餅" data-price="30" data-category="台式蛋餅">原味蛋餅 - $30</li>
+                <li class="list-group-item" data-name="玉米蛋餅" data-price="40" data-category="台式蛋餅">玉米蛋餅 - $40</li>
+                <li class="list-group-item" data-name="蔬菜蛋餅" data-price="40" data-category="台式蛋餅">蔬菜蛋餅 - $40</li>
+                <li class="list-group-item" data-name="肉鬆蛋餅" data-price="40" data-category="台式蛋餅">肉鬆蛋餅 - $40</li>
+                <li class="list-group-item" data-name="培根蛋餅" data-price="45" data-category="台式蛋餅">培根蛋餅 - $45</li>
+                <li class="list-group-item" data-name="香濃起士堡" data-price="50" data-category="漢堡">香濃起士堡 - $50</li>
+                <li class="list-group-item" data-name="雙層鱈魚堡" data-price="55" data-category="漢堡">雙層鱈魚堡 - $55</li>
+                <li class="list-group-item" data-name="蕈菇青蔬堡" data-price="55" data-category="漢堡">蕈菇青蔬堡 - $55</li>
+                <li class="list-group-item" data-name="椒鹽雞塊堡" data-price="55" data-category="漢堡">椒鹽雞塊堡 - $55</li>
+                <li class="list-group-item" data-name="優良好寶堡" data-price="55" data-category="漢堡">優良好寶堡 - $55</li>
+                <li class="list-group-item" data-name="我是薯餅" data-price="20" data-category="小點">我是薯餅 - $20</li>
+                <li class="list-group-item" data-name="波浪薯條" data-price="35" data-category="小點">波浪薯條 - $35</li>
+                <li class="list-group-item" data-name="美式厚薯" data-price="40" data-category="小點">美式厚薯 - $40</li>
+                <li class="list-group-item" data-name="麥克雞塊" data-price="35" data-category="小點">麥克雞塊 - $35</li>
+                <li class="list-group-item" data-name="醇濃巧克力鬆餅" data-price="35" data-category="鬆餅">醇濃巧克力鬆餅 - $35</li>
+                <li class="list-group-item" data-name="奶油蜂蜜鬆餅" data-price="35" data-category="鬆餅">奶油蜂蜜鬆餅 - $35</li>
+                <li class="list-group-item" data-name="脆粒花生鬆餅" data-price="35" data-category="鬆餅">脆粒花生鬆餅 - $35</li>
+                <li class="list-group-item" data-name="抹茶奶酥鬆餅" data-price="40" data-category="鬆餅">抹茶奶酥鬆餅 - $40</li>
+                <li class="list-group-item" data-name="伯爵紅茶" data-price="25" data-category="飲料">伯爵紅茶 - $25</li>
+                <li class="list-group-item" data-name="茉莉綠茶" data-price="25" data-category="飲料">茉莉綠茶 - $25</li>
+                <li class="list-group-item" data-name="一把青茶" data-price="30" data-category="飲料">一把青茶 - $30</li>
+                <li class="list-group-item" data-name="貴妃那堤" data-price="30" data-category="飲料">貴妃那堤 - $30</li>
+                <li class="list-group-item" data-name="可可好朋友" data-price="40" data-category="特調飲品">可可好朋友 - $40</li>
+                <li class="list-group-item" data-name="蕉蕉好朋友" data-price="40" data-category="特調飲品">蕉蕉好朋友 - $40</li>
+                <li class="list-group-item" data-name="五穀好朋友" data-price="45" data-category="特調飲品">五穀好朋友 - $45</li>
+                <li class="list-group-item" data-name="抹茶紅豆拿鐵" data-price="50" data-category="特調飲品">抹茶紅豆拿鐵 - $50</li>
+            </ul>
+        </div>
+
+        <div id="foodMenu" class="mt-4" style="display: none;">
+            <h2>食物列表</h2>
+            <ul id="menu" class="list-group">
+                
+                <li class="list-group-item" data-name="原味蛋餅" data-price="30" data-category="台式蛋餅">原味蛋餅 - $30</li>
+                <li class="list-group-item" data-name="玉米蛋餅" data-price="40" data-category="台式蛋餅">玉米蛋餅 - $40</li>
+                <li class="list-group-item" data-name="蔬菜蛋餅" data-price="40" data-category="台式蛋餅">蔬菜蛋餅 - $40</li>
+                <li class="list-group-item" data-name="肉鬆蛋餅" data-price="40" data-category="台式蛋餅">肉鬆蛋餅 - $40</li>
+                <li class="list-group-item" data-name="培根蛋餅" data-price="45" data-category="台式蛋餅">培根蛋餅 - $45</li>
+                <li class="list-group-item" data-name="香濃起士堡" data-price="50" data-category="漢堡">香濃起士堡 - $50</li>
+                <li class="list-group-item" data-name="雙層鱈魚堡" data-price="55" data-category="漢堡">雙層鱈魚堡 - $55</li>
+                <li class="list-group-item" data-name="蕈菇青蔬堡" data-price="55" data-category="漢堡">蕈菇青蔬堡 - $55</li>
+                <li class="list-group-item" data-name="椒鹽雞塊堡" data-price="55" data-category="漢堡">椒鹽雞塊堡 - $55</li>
+                <li class="list-group-item" data-name="優良好寶堡" data-price="55" data-category="漢堡">優良好寶堡 - $55</li>
+                <li class="list-group-item" data-name="我是薯餅" data-price="20" data-category="小點">我是薯餅 - $20</li>
+                <li class="list-group-item" data-name="波浪薯條" data-price="35" data-category="小點">波浪薯條 - $35</li>
+                <li class="list-group-item" data-name="美式厚薯" data-price="40" data-category="小點">美式厚薯 - $40</li>
+                <li class="list-group-item" data-name="麥克雞塊" data-price="35" data-category="小點">麥克雞塊 - $35</li>
+                <li class="list-group-item" data-name="醇濃巧克力鬆餅" data-price="35" data-category="鬆餅">醇濃巧克力鬆餅 - $35</li>
+                <li class="list-group-item" data-name="奶油蜂蜜鬆餅" data-price="35" data-category="鬆餅">奶油蜂蜜鬆餅 - $35</li>
+                <li class="list-group-item" data-name="脆粒花生鬆餅" data-price="35" data-category="鬆餅">脆粒花生鬆餅 - $35</li>
+                <li class="list-group-item" data-name="抹茶奶酥鬆餅" data-price="40" data-category="鬆餅">抹茶奶酥鬆餅 - $40</li>
+                <li class="list-group-item" data-name="伯爵紅茶" data-price="25" data-category="飲料">伯爵紅茶 - $25</li>
+                <li class="list-group-item" data-name="茉莉綠茶" data-price="25" data-category="飲料">茉莉綠茶 - $25</li>
+                <li class="list-group-item" data-name="一把青茶" data-price="30" data-category="飲料">一把青茶 - $30</li>
+                <li class="list-group-item" data-name="貴妃那堤" data-price="30" data-category="飲料">貴妃那堤 - $30</li>
+                <li class="list-group-item" data-name="可可好朋友" data-price="40" data-category="特調飲品">可可好朋友 - $40</li>
+                <li class="list-group-item" data-name="蕉蕉好朋友" data-price="40" data-category="特調飲品">蕉蕉好朋友 - $40</li>
+                <li class="list-group-item" data-name="莓有好朋友" data-price="40" data-category="特調飲品">莓有好朋友 - $40</li>
+            </ul>
+        </div>
+        
+        <!-- Order Summary -->
+        <div id="orderSummary" class="mt-4">
+            <h3>Order Summary</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTable">
+                </tbody>
+            </table>
+            <p id="totalPrice">Total: $0</p>
+            <button type="button" class="btn btn-primary" onclick="saveOrder()" >Save Order</button>
+            <button type="button" class="btn btn-success" onclick="completeOrder()">Complete Order</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
